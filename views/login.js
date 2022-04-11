@@ -1,17 +1,28 @@
 import React from 'react';
 
+
+
 const exports = {};
 
 exports.Wrapper = class extends React.Component {
-  render() {
-    const {content} = this.props;
     
+
+    constructor(props) {
+        super(props);
+       
+      }
+
+  
+  render() { 
+      
     return (
+       
         
       <div className="App">
+       
         <h2>WELCOME TO CHIRP CHIRP</h2>
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
+        <div class="container" id="container">
+	    <div class="form-container sign-up-container">
 		<form action="#">
 			<h1>Create Account</h1>
 			<div class="social-container">
@@ -26,6 +37,7 @@ exports.Wrapper = class extends React.Component {
 			<button>Sign Up</button>
 		</form>
 	</div>
+
 	<div class="form-container sign-in-container">
 		<form action="#">
 			<h1>Sign in</h1>
@@ -38,9 +50,10 @@ exports.Wrapper = class extends React.Component {
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button onClick={this.handleLogin}>Sign In</button>
 		</form>
 	</div>
+
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">
@@ -52,19 +65,56 @@ exports.Wrapper = class extends React.Component {
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
 				<button class="ghost" id="signUp">Sign Up</button>
+
+				<button class="ghost" id="signUp">Sign Up with MyAlgo Wallet</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-  <script  src="./script.js">
-      
-  </script>
-      </div>
+                <script  src="./script.js"></script>
+    </div>
+
       
     );
     
   }
 }
 
+exports.ConnectAccount = class extends React.Component {
+	render() {
+	  return (
+		<div>
+		  Please wait while we connect to your account.
+		  If this takes more than a few seconds, there may be something wrong.
+		</div>
+	  )
+	}
+  }
+
+  exports.FundAccount = class extends React.Component {
+	render() {
+	  const {bal, standardUnit, defaultFundAmt, parent} = this.props;
+	  const amt = (this.state || {}).amt || defaultFundAmt;
+	  return (
+		<div>
+		  <h2>Fund account</h2>
+		  <br />
+		  Balance: {bal} {standardUnit}
+		  <hr />
+		  Would you like to fund your account with additional {standardUnit}?
+		  <br />
+		  (This only works on certain devnets)
+		  <br />
+		  <input
+			type='number'
+			placeholder={defaultFundAmt}
+			onChange={(e) => this.setState({amt: e.currentTarget.value})}
+		  />
+		  <button onClick={() => parent.fundAccount(amt)}>Fund Account</button>
+		  <button onClick={() => parent.skipFundAccount()}>Skip</button>
+		</div>
+	  );
+	}
+  }
 export default exports;
