@@ -49,8 +49,8 @@ export default function TableDetail({ returnInput, header, name, mode }) {
                                         </div>
                                     </th>
                                     <th className=" align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        7,200 USDC
-                                        <p className="text-xs">($7,200.00)</p>
+                                        0.00 USDC
+                                        <p className="text-xs">($0.00)</p>
                                     </th>
                                    
                                     
@@ -114,8 +114,8 @@ export default function TableDetail({ returnInput, header, name, mode }) {
                                         </div>
                                     </th>
                                     <th className=" align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        10,000 ALGO
-                                        <p className="text-xs">($10,000.00)</p>
+                                        0.00 ALGO
+                                        <p className="text-xs">($0.00)</p>
                                     </th>
                                    
                                     

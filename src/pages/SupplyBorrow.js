@@ -80,7 +80,7 @@ export default function SupplyBorrow() {
                                     <div className="inline-flex float-left " >
                                         <Button
                                             color="transparent"
-                                            className=" flex-1 bg-new-green py-4 h-10 rounded-full"
+                                            className=" flex-1 bg-primary py-4 h-10 rounded-full"
                                             ripple="dark"
 
                                         >
@@ -92,7 +92,7 @@ export default function SupplyBorrow() {
                                         <Link to='/mode/receive' >
                                             <Button
                                                 color="transparent"
-                                                className="flex-1 bg-new-purple opacity-25 py-4 h-10 ml-4 rounded-full"
+                                                className="flex-1 bg-yellow-600 opacity-25 py-4 h-10 ml-4 rounded-full"
                                                 ripple="dark"
                                                 onClick={() => setMode('receive')}
                                             >
@@ -107,7 +107,7 @@ export default function SupplyBorrow() {
                                         <Link to='/mode/send' >
                                             <Button
                                                 color="transparent"
-                                                className=" flex-1 bg-new-green opacity-25 py-4 h-10 rounded-full"
+                                                className=" flex-1 bg-primary opacity-25 py-4 h-10 rounded-full"
                                                 ripple="dark"
                                                 onClick={() => setMode('send')}
                                             >
@@ -119,7 +119,7 @@ export default function SupplyBorrow() {
 
                                         <Button
                                             color="transparent"
-                                            className="flex-1 bg-new-purple py-4 h-10 ml-4 rounded-full"
+                                            className="flex-1 bg-yellow-600 py-4 h-10 ml-4 rounded-full"
                                             ripple="dark"
                                         >
                                             <span className="text-white  normal-case text-sm" >

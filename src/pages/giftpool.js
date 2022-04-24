@@ -1,23 +1,12 @@
 import DefaultNavbar from '../components/DefaultNavbar';
-import CardImage from '@material-tailwind/react/CardImage';
-import CardBody from '@material-tailwind/react/CardBody';
 import H5 from '@material-tailwind/react/Heading5';
-import H4 from '@material-tailwind/react/Heading4';
 import LeadText from '@material-tailwind/react/LeadText';
-import Bag from '../assets/img/bag.png';
 import DefaultFooter from '../components/DefaultFooter';
 import Button from '@material-tailwind/react/Button';
-import USDC from '../assets/img/USDC.png'
-import USDC_SPEC from '../assets/img/usdc_spec.png'
-import Algo from '../assets/img/spec_algo.png';
-import AlgoLogo from '../assets/img/algo_logo.png';
-import StatusCard from '../components/StatusCard';
 import { Link } from "react-router-dom";
-import Icon from '@material-tailwind/react/Icon';
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-import { acceptTokenAction, deployContractAction, viewLendingTokenAction } from '../redux/actions/ownerActions';
-import { setBalance } from '../redux/actions/networkActions';
+import {  deployContractAction } from '../redux/actions/ownerActions';
 import { contractBalanceAction } from '../redux/actions/lenderActions';
 
 export default function GiftPool() {
@@ -51,7 +40,7 @@ export default function GiftPool() {
                         <Link to="/mode/send">
                             <Button
                                 color="transparent"
-                                className=" flex-1 bg-new-green py-4  ml-4 rounded-full"
+                                className=" flex-1 bg-primary py-4  ml-4 rounded-full"
                                 ripple="dark"
                             >
                                 <span className="text-white normal-case text-sm" >
@@ -63,7 +52,7 @@ export default function GiftPool() {
                         <Link to="/mode/receive">
                             <Button
                                 color="transparent"
-                                className="flex-1 bg-new-purple py-4  ml-4 rounded-full"
+                                className="flex-1 bg-yellow-600 py-4  ml-4 rounded-full"
                                 ripple="dark"
                             >
                                 <span className="text-white normal-case text-sm" >
@@ -73,8 +62,17 @@ export default function GiftPool() {
                         </Link>
                     </div>
                 </div>
+                
+                <div class="container">
 
-                <div className="container max-w-8xl mb-16 mx-auto px-4">
+<div class="row">
+    <div class="col-md-6 ">
+        <img src={require('./../assets/img/send.png')}class="img-fluid" alt=""></img>
+    </div>
+
+    <div class="col-md-6   justify-content ">
+
+    <div className="container max-w-8xl mb-16 mx-auto px-4">
                     <div className="flex flex-wrap  sm:mt-8 md:pt-16 ">
                         <div className="w-full md:text-xl   md:w-4/12 px-2 mx-auto">
                             <H5 className="" color="black">
@@ -87,7 +85,13 @@ export default function GiftPool() {
                         </div>
                       
                     </div>
-                </div>         
+                </div> 
+
+    </div>
+</div>
+
+</div>
+                        
             </div>
 
             <DefaultFooter />

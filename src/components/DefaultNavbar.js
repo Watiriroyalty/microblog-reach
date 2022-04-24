@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import React from "react";
+import {useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { Link } from 'react-router-dom';
 import Navbar from '@material-tailwind/react/Navbar';
 import NavbarContainer from '@material-tailwind/react/NavbarContainer';
@@ -10,11 +10,11 @@ import NavbarToggler from '@material-tailwind/react/NavbarToggler';
 import NavbarCollapse from '@material-tailwind/react/NavbarCollapse';
 import Nav from '@material-tailwind/react/Nav';
 import NavLink from '@material-tailwind/react/NavLink';
-import Dropdown from '@material-tailwind/react/Dropdown';
-import DropdownItem from '@material-tailwind/react/DropdownItem';
+import Dropdown from "@material-tailwind/react/Dropdown";
+import DropdownItem from "@material-tailwind/react/DropdownItem";
 import Icon from '@material-tailwind/react/Icon';
 import { useDispatch, useSelector } from "react-redux";
-import { createNewAccount, disconnect, handleImportAccount, storeWallet } from '../redux/actions/networkActions';
+import { createNewAccount, disconnect, handleImportAccount} from '../redux/actions/networkActions';
 
 export default function DefaultNavbar() {
     const [openNavbar, setOpenNavbar] = useState(false);
@@ -29,15 +29,13 @@ export default function DefaultNavbar() {
         } else {
             alert('Invalid mnemonic')
         }
-    }
+    }  
 
     return (
          <>
-        <header id="header" class=" fixed-top d-flex align-items-center ">
+        <header id="header" class=" fixed-top d-flex align-items-right ">
             
-        <div class="container d-flex justify-content-between align-items-center">
-    
-          
+        <div class="container d-flex justify-content-between align-items-center"> 
     
           <Navbar color="transparent" navbar>
             <NavbarContainer>
@@ -93,8 +91,8 @@ export default function DefaultNavbar() {
                                 </NavLink>
                             </Link>
 
-
                             <div className="text-white bg-new-gray-100 rounded-lg">
+                                
                                 {
                                     user.user ?
                                         <Dropdown
@@ -137,7 +135,7 @@ export default function DefaultNavbar() {
                                             ripple="light"
                                         >
 
-                                            <DropdownItem color="lightGreen">
+                                            <DropdownItem color="blue">
 
                                                 <div className="space-x-4"
                                                     onClick={() => handleInput()}
@@ -150,7 +148,7 @@ export default function DefaultNavbar() {
                                                 </div>
                                             </DropdownItem>
 
-                                            <DropdownItem color="lightGreen">
+                                            <DropdownItem color="blue">
 
                                                 <div className="space-x-4"
                                                     onClick={() => dispatch(createNewAccount())}
@@ -158,7 +156,6 @@ export default function DefaultNavbar() {
                                                     <span className="inline-block text-md" >
                                                         Create Account
                                                     </span>
-
 
                                                 </div>
 
@@ -168,9 +165,6 @@ export default function DefaultNavbar() {
                                 }
 
                             </div>
-
-
-
                             <NavLink
                                 href="/"
                                 target="_blank"
@@ -215,8 +209,7 @@ export default function DefaultNavbar() {
         </Navbar>
         </div>
         <script src="assets/js/main.js"></script>
-        </header>
-        
+        </header>        
      </>
     );
 }

@@ -6,12 +6,13 @@ import DefaultFooter from '../components/DefaultFooter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../assets/css/style.css';
 import './../assets/img/favicon.png'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 
 
 export default function landing() {
-
+  
         return (
             <>
 
@@ -25,7 +26,7 @@ export default function landing() {
        
           
                 <section id="hero" class="d-flex justify-cntent-center align-items-center">
-                    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+                    <div id="heroCarousel" class="container carousel carousel-fade " data-bs-ride="carousel" data-bs-interval="5000">
 
 
                         <div class="carousel-item active">
@@ -72,8 +73,9 @@ export default function landing() {
 
                         <div class="row">
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                                <div class="icon-box icon-box-pink">
-                                    <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                                <div class="icon-box text-center icon-box-pink">
+                                    <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/dribble.png')}class="img-fluid" alt=""></img>
+                                    
                                     <h4 class="title"><a href="">Anonymous</a></h4>
                                     <p class="description">Access application resources without providing a username or password</p>
                                 </div>
@@ -81,7 +83,7 @@ export default function landing() {
 
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                                 <div class="icon-box icon-box-cyan">
-                                    <div class="icon"><i class="bx bx-file"></i></div>
+                                <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/file.png')}class="img-fluid" alt=""></img>
                                     <h4 class="title"><a href="">Micro Blog</a></h4>
                                     <p class="description">Share short messages with an online audience to improve engagement</p>
                                 </div>
@@ -89,7 +91,7 @@ export default function landing() {
 
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                                 <div class="icon-box icon-box-green">
-                                    <div class="icon"><i class="bx bx-tachometer"></i></div>
+                                <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/lock.png')}class="img-fluid" alt=""></img>
                                     <h4 class="title"><a href="">Secure</a></h4>
                                     <p class="description">Free from the control and interference of a single authority. User privacy is well safeguarded</p>
                                 </div>
@@ -97,7 +99,7 @@ export default function landing() {
 
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                                 <div class="icon-box icon-box-blue">
-                                    <div class="icon"><i class="bx bx-world"></i></div>
+                                <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/world.png')}class="img-fluid" alt=""></img>
                                     <h4 class="title"><a href="">Decentralized</a></h4>
                                     <p class="description">Chirp Chirp runs on a blockchain and distributed computing systems. Fully open source and autonomous.</p>
                                 </div>
@@ -120,13 +122,13 @@ export default function landing() {
                             <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
 
                                 <div class="icon-box">
-                                    <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                                    <div class="icon">  <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/fingerprint.png')}class="img-fluid" alt=""></img></div>
                                     <h4 class="title"><a href="">Digital Wallet</a></h4>
                                     <p class="description">Connect your account to start using the services.</p>
                                 </div>
 
                                 <div class="icon-box">
-                                    <div class="icon"><i class="bx bx-gift"></i></div>
+                                <div class="icon">  <img class= "rounded mx-auto align-items-centre" src={require('./../assets/img/gift.png')}class="img-fluid" alt=""></img></div>
                                     <h4 class="title"><a href="">Send/Receive Gifts</a></h4>
                                     <p class="description">Send and receive algos to your friends and favorite creators on the blockchain.</p>
                                 </div>
