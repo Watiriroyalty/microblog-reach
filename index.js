@@ -1,35 +1,39 @@
 import React from 'react';
-import login from './views/login.js';
-import {renderDOM, renderView} from './views/render.js';
-import './style.css';
-//import {loadStdlib} from '@reach-sh/stdlib';
-const reach = loadStdlib(process.env);
-class App extends React.Component{
-    render(){
-        return renderView(this, login);
-    }
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import reducers from "./src/redux/reducer/index"
+import * as backend from './src/redux/actions/build/index.main.mjs'
+import thunk from 'redux-thunk';
+import { loadStdlib } from '@reach-sh/stdlib';
+import registerServiceWorker from './registerServiceWorker';
+const reach = loadStdlib('ALGO');
+reach.setProviderByName('TestNet')
 
-    constructor(props){
-        super(props);
-        this.state = {view: 'ConnectAccount', ...defaults};
-    }
-    async componentDidMount() {
-        const acc = await reach.getDefaultAccount();
-        const balAtomic = await reach.balanceOf(acc);
-        const bal = reach.formatCurrency(balAtomic, 4);
-        this.setState({acc, bal});
-        if (await reach.canFundFromFaucet()) {
-          this.setState({view: 'FundAccount'});
-        } else {
-          return false;
-        }
-      }
 
-      async fundAccount(fundAmount) {
-        await reach.fundFromFaucet(this.state.acc, reach.parseCurrency(fundAmount));
-        this.setState({view: 'DeployerOrAttacher'});
-      }
+const store = createStore(reducers, compose(
+  applyMiddleware(thunk)
+),);
 
-}
 
-renderDOM(<App />);
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+    <Provider store={store}>
+    <App />
+    </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+registerServiceWorker();

@@ -1,78 +1,177 @@
 'reach 0.1';
 
-/**
-   * The body of a reach app is an application initialization
-   * defines the various participants and views of the DApp as well as sets compilation options.
-   * It is finalized with init() and then application begins in a step
-   */
-  
+const common = {
+  viewLendingToken: Fun([Object({
+    id: Token,
+    lendingAPY: UInt,
+    borrowingAPY: UInt,
+  })], Null),
+
+  getDate: Fun([], UInt)
+}
+
 export const main = Reach.App(() => {
-
-  
-  const A = Participant('Creator', {
-    // Specify Alice's interact interface here
+  const Owner = Participant('Owner', {
+    acceptToken: Token,
+    ...common
   });
-  const B = Participant('Audience', {
+
+  const Lender = ParticipantClass('Lender', {
+    // Specify lender's interact interface here
+    ...common,
+    lend: Fun([], Object({token: Token, amount: UInt, createdAt: UInt })),
+    withdraw: Fun([UInt], Null),
+  });
+
+  const Borrower = ParticipantClass('Borrower', {
     // Specify Bob's interact interface here
+    ...common
   });
+  
   init();
-  // write your program here
 
-  /**
-   * A reach step occurs in the continuation of an init statement or commit statement.
-   * It represents the actions taken by each of the participants in an application.
-   */
+  Owner.only(() => {
+    const acceptedLendingTokenId = declassify(interact.acceptToken);
+
+    const acceptedLendingToken = {
+      id: acceptedLendingTokenId,
+      lendingAPY: 5,
+      borrowingAPY: 7,
+    };
+  });
+
+  Owner.publish(acceptedLendingToken, acceptedLendingTokenId);
+
+  const liquidityData = new Map(Object({
+    amount: UInt,
+    createdAt: UInt
+  }));
+
+  commit();
+
+
+  each([Owner, Lender], () => {
+    interact.viewLendingToken(acceptedLendingToken)
+  });
+
+  Lender.only(() => {
+
+  });
+  
+  Lender.publish();
+
+  var totalSupply = 3000;
+  invariant(balance() == 0);
+  while(totalSupply > 0) {
+
+    commit()  
+  
+    Lender.only(() => {
+      
+      const { amount, token, createdAt } = declassify(interact.lend());
+      const lendingUserAccount = this;
+
+      assume(amount > 0, 'Amount must be greater than zero');
+      assume(token === acceptedLendingTokenId, 'Token not allowed')
+      assume(createdAt > 1000);
+      assume(totalSupply >= amount);
+    });
+    
+    Lender.publish(amount, createdAt, lendingUserAccount)
+      .pay([[amount, acceptedLendingTokenId]])
+      .when(Lender == lendingUserAccount && isNone(liquidityData[lendingUserAccount]))
+      .timeout(false);
+
+    require(totalSupply >= amount);
+    require(createdAt > 1000);
+    require(amount > 0, 'Amount must be greater than zero');
+
+    const checkDeposit = fromSome(
+      liquidityData[lendingUserAccount],
+      {amount: 0, createdAt: 0}
+    );
+
+    if(checkDeposit.createdAt == 0) {
+      liquidityData[lendingUserAccount] = {
+        amount: amount,
+        createdAt: createdAt 
+      };
+    } else {
+      liquidityData[lendingUserAccount] = {
+        amount: checkDeposit.amount + amount,
+        createdAt: createdAt 
+      };
+    }
+    
+    totalSupply = totalSupply - amount
+      
+    continue;  
+  }
+  commit();
+
+  Lender.only(() => {
+
+  })
+
+  Lender.publish();
+
+  var totalVested = balance(acceptedLendingTokenId); 
+  invariant(balance() == 0);
+  while(totalVested > 0) {
+    commit();
+    
+    Lender.only(() => {
+      // Time stamp in days.
+      const todayDate = declassify(interact.getDate());
+      const lenderAccount = this;
+
+      const deposit = fromSome(
+          liquidityData[lenderAccount],
+          {amount: 0, createdAt: 0}
+      );
+      
+      const amountDeposited = deposit.amount;
+      const dateDeposited = deposit.createdAt;
+
+      assume(todayDate >= dateDeposited);
+      assume(balance(acceptedLendingTokenId) >= amountDeposited, 'Currently not enough money to pay you, try again later.');
+
+      const daysVested = todayDate - dateDeposited;
+
+      const interestPercent = (acceptedLendingToken.lendingAPY / 365) * daysVested;
+      const interest = (interestPercent/100) * amountDeposited
+      const totalEarning = interest + amountDeposited;
+
+      interact.withdraw(totalEarning);
+      
+    });
+    Lender.publish(
+      todayDate, dateDeposited, amountDeposited, daysVested, interest, totalEarning, lenderAccount
+    ).when(
+      Lender == lenderAccount && 
+      isSome(liquidityData[lenderAccount]) &&
+      totalVested >= amountDeposited
+    )
+    .timeout(false);
+    
+    require(todayDate >= dateDeposited);
+    require(balance(acceptedLendingTokenId) >= amountDeposited, 'Currently not enough money to pay you, try again later.');
+    require(totalEarning >= amountDeposited);;
+    require(balance(acceptedLendingTokenId) >= totalEarning);
+    
+    delete liquidityData[this];
+  
+    transfer(totalEarning, acceptedLendingTokenId).to(lenderAccount);
+    
+    totalVested = totalVested - totalEarning;
+
+    continue;
+  } 
+  
+  transfer(balance(acceptedLendingTokenId), acceptedLendingTokenId).to(Owner);
+  require(balance(acceptedLendingTokenId) == 0);
+
+  commit();
+
+  exit();
 });
-
-//A block is a sequence of statements surrounded by braces, i.e. { and }.2
-
-//Each statement affects the meaning of the subsequent statements, which is called its tail. For example, if {X; Y; Z;} is a block, then X's tail is {Y; Z;} and Y's tail is {Z;}.
-
-//Distinct from tails are continuations which include everything after the statement. For example, in { {X; Y;}; Z;}, X's tail is just Y, but its continuation is {Y;}; Z;.
-
-//A return statement returns its value to the surrounding function application.
-
-//A return statement is a terminator statement, so it must have an empty tail.
-
-//A conditional statement may only include a consensus transfer in NOT_FALSE or FALSE if it is within a consensus step, because its statements are in the same context as the conditional statement itself.30
-
-//If one branch of a conditional contains a return, then both must.
-
-// A try statement, written try BLOCK catch (VAR) BLOCK, allows a block of code to execute with a specified handler should an exception be thrown.
-
-/**
- * try {
-  throw 10;
-  } catch (v) {
-  transfer(v).to(A); }
- * 
- */
-
- /**
-  * Reach's types are represented in programs by the following identifiers and constructors: 
-  * Null.
-  * Bool, which denotes a boolean.
-  * UInt, which denotes an unsigned integer. UInt.max is the largest value that may be assigned to a UInt.
-  * Int, which denotes a signed integer.
-  * FixedPoint, which denotes a fractional number.
-  * Bytes(length), which denotes a string of bytes of length at most length. Bytes of different lengths are not compatible; however the shorter bytes may be padded.
-  * Digest, which denotes a digest.
-  * Address, which denotes an account address.
-  * Contract, which denotes the identifying information of a contract
-  * 
-  * 
-  * 
-  * Reach has different representations of contracts across connectors. For example, on Algorand a Contract is an Application ID, but on Ethereum it is an Address.
-  * 
-  * 
-  * Token, which denotes a non-network token.
-  * 
-  * Fun([Domain_0, ..., Domain_N], Range), which denotes a function type, when Domain_i and Range are types. The domain of a function is negative position. The range of a function is positive position.
-  * Fun(true, Range), which denotes an unconstrained domain function type, when Range is a type. These functions may only appear in participant interact interfaces.
-  * Tuple(Field_0, ..., FieldN), which denotes a tuple. (Refer to Tuples for constructing tuples.)
-  * Object({key_0: Type_0, ..., key_N: Type_N}), which denotes an object. (Refer to Objects for constructing objects.)
-  * Struct([[key_0, Type_0], ..., [key_N, Type_N]]), which denotes a struct. (Refer to Structs for constructing structs.)
-  * Array(Type_0, size), which denotes a statically-sized array. Type_0 must be a type that can exist at runtime (i.e., not a function type.) (Refer to Arrays for constructing arrays.)
-  * Data({variant_0: Type_0, ..., variant_N: Type_N}), which denotes a tagged union (or sum type). (Refer to Data for constructing data instances.)
-  * Refine(Type_0, Predicate, ?Message), where Predicate is a unary function returning a boolean, which denotes a refinement type, that is instances of Type_0 that satisfy Predicate. When a refinement type appears in a negative position (such as in an is or in the domain of a Fun of a participant interact interface), it introduces an assert; while when it is in a positive position, it introduces an assume. Message is an optional string to display if the predicate fails verification
- */ 

@@ -1,15 +1,295 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>LOGIN/SIGNUP PAGE</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Chirp Chirp</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
+
 <body>
 
-<!-- partial -->
-  <script  src="./script.js"></script>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="index.html"><span>Chirp Chirp</span></a></h1>
+       
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="active " href="index.html">Home</a></li>
+          <li><a href="#">Chirps</a></li>
+          <li><a href="#">Money Pool</a></li>
+                 
+          <li class="dropdown"><a href="#"><span>Connect Wallet </span> <i class="bi bi-chevron-down"></i></a>
+            
+                <ul>
+                  <li><a href="#">Import Account</a></li>
+                  <li><a href="#">Create Account</a></li>
+              
+                </ul>
+              </li>
+             
+            </ul>
+          </li>
+         
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-cntent-center align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Chirp Chirp</span></h2>
+          <p class="animate__animated animate__fadeInUp">With your digital wallet, you can use the app anonymously</p>
+          
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">DECENTRALIZED</h2>
+          <p class="animate__animated animate__fadeInUp">This microblog is truly decentralized</p>
+          
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">SECURE</h2>
+          <p class="animate__animated animate__fadeInUp">The transactions and information provided is safe.</p>
+         
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section class="services">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box icon-box-pink">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4 class="title"><a href="">Anonymous</a></h4>
+              <p class="description">Access application resources without providing a username or password</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box icon-box-cyan">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4 class="title"><a href="">Micro Blog</a></h4>
+              <p class="description">Share short messages with an online audience to improve engagement</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="">Secure</a></h4>
+              <p class="description">Free from the control and interference of a single authority. User privacy is well safeguarded</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-blue">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h4 class="title"><a href="">Decentralized</a></h4>
+              <p class="description">Chirp Chirp runs on a blockchain and distributed computing systems. Fully open source and autonomous.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 video-box">
+            <img src="assets/img/coinbag.png" class="img-fluid" alt="">            
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="">Digital Wallet</a></h4>
+              <p class="description">Connect your account to start using the services.</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-gift"></i></div>
+              <h4 class="title"><a href="">Send/Receive Gifts</a></h4>
+              <p class="description">Send and receive algos to your friends and favorite creators on the blockchain.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section class="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Features</h2>
+         
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-4">
+            <p>Chirp Chirp allows you to communicate with your audience quickly via sending short images instead of writing pages of text.</p>
+          
+          </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5 order-1 order-md-2">
+            <img src="assets/img/features-2.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1">
+            <h3>Analyze Trends</h3>
+            
+            <p>
+             Analyze the current trends on the application.
+            </p>
+          </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="assets/img/features-3.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5">
+            <h3>See what fellow chirpers have been up to</h3>
+            
+            <p>
+             View the explorer page to see what chirpers have been chirping.
+            </p>
+          </div>
+        </div>
+    </section><!-- End Features Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>Our Newsletter</h4>
+            <p>Subscribe to our newsletter by providing your email address to get updates on chirp chirp</p>
+          </div>
+          <div class="col-lg-6">
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">   
+
+       
+          <div class="col-lg-3 col-md-6 footer-info">
+          
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Chirp Chirp</span></strong>. All Rights Reserved
+      </div>
+   
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
